@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neon Jam Lab</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">✦</span><span>NEON<br /><b>JAM LAB</b></span></div>
+      <button class="new-project" id="newProjectBtn"><span>＋</span> New project</button>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-link active" data-view="studio"><span>◈</span> Studio <em>⌘1</em></button>
+        <button class="nav-link" data-view="instruments"><span>♫</span> Instruments <em>⌘2</em></button>
+        <button class="nav-link" data-view="games"><span>✣</span> Music games <em>⌘3</em></button>
+      </nav>
+      <div class="sidebar-divider"></div>
+      <div class="library-title">YOUR LIBRARY <button id="importBtn" title="Import a saved project">↥</button></div>
+      <div class="project-list" id="projectList"></div>
+      <div class="sidebar-bottom">
+        <div class="tip-card"><span class="tip-icon">◒</span><div><b>Quick tip</b><p>Click a pad, then build a loop.</p></div></div>
+        <button class="help-button">? &nbsp; How it works</button>
+      </div>
+      <input type="file" id="projectFile" accept="application/json" hidden />
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar"><div class="breadcrumb">My projects <span>/</span> <b id="projectNameTop">Midnight Bloom</b></div><div class="top-actions"><span class="saved-state" id="savedState">● Saved just now</span><button class="icon-btn" id="exportBtn">↥</button><button class="avatar">JD</button></div></header>
+
+      <section class="view active" id="studioView">
+        <div class="welcome-row"><div><p class="eyebrow">THURSDAY, SEPTEMBER 4, 2026</p><h1>Make something <span>electric.</span></h1><p class="subtitle">Your colorful playground for beats, melodies, and happy accidents.</p></div><button class="primary-btn" id="playAllBtn"><span class="play-symbol">▶</span> Play jam <kbd>Space</kbd></button></div>
+        <div class="studio-grid">
+          <section class="card mixer-card">
+            <div class="section-heading"><div><span class="label">LIVE MIXER</span><h2>Midnight Bloom</h2></div><div class="tempo"><button id="tempoDown">−</button><strong id="tempoValue">108</strong><small>BPM</small><button id="tempoUp">＋</button></div></div>
+            <div class="track-list" id="trackList"></div>
+            <button class="add-track" id="addTrackBtn">＋ Add a track</button>
+          </section>
+          <section class="card loop-card">
+            <div class="section-heading"><div><span class="label">LOOP MAKER</span><h2>Build your groove</h2></div><div class="loop-tools"><button id="clearLoop">Clear</button><button class="small-play" id="playLoop">▶</button></div></div>
+            <div class="step-labels"><span></span><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i><i>10</i><i>11</i><i>12</i><i>13</i><i>14</i><i>15</i><i>16</i></div>
+            <div id="sequencer" class="sequencer"></div>
+            <div class="loop-foot"><span><b class="live-dot"></b> 4 bars · Tap a square to add a hit</span><button class="text-btn" id="randomizeBtn">✦ Surprise me</button></div>
+          </section>
+        </div>
+        <section class="card voice-banner"><div class="voice-art"><span>♬</span><span>♩</span><span>♪</span></div><div><span class="label">VOCAL BOOTH</span><h2>Add your voice to the jam</h2><p>Record a hook, harmony, or tiny “yeah!” and layer it into your project.</p></div><button class="outline-btn" id="recordBtn"><span>●</span> Record voice</button><div class="recording-status" id="recordingStatus"></div></section>
+        <div class="bottom-grid"><section class="card mini-card"><div class="section-heading"><div><span class="label">PICK YOUR COLOR</span><h2>Current sound</h2></div><span id="instrumentIcon" class="big-instrument-icon">♩</span></div><div class="current-instrument" id="currentInstrument">Synth keys</div><p>Swap your voice instantly in the instrument room.</p><button class="text-btn" data-view-target="instruments">Open instrument room →</button></section><section class="card mini-card game-tease"><div><span class="label">5 MINUTES TO PLAY</span><h2>Ear gym</h2><p>Can you hear the difference between a major and minor triad?</p><button class="text-btn" data-view-target="games">Try a game →</button></div><div class="game-orb">♩</div></section></div>
+      </section>
+
+      <section class="view" id="instrumentsView"><div class="page-heading"><p class="eyebrow">THE INSTRUMENT ROOM</p><h1>Find your <span>color.</span></h1><p class="subtitle">Choose a voice for the selected track, then play the instrument below.</p></div><div class="instrument-layout"><div class="card instrument-picker"><div class="picker-head"><span class="label">ALL INSTRUMENTS</span><span id="instrumentCount">12 sounds</span></div><div id="instrumentGrid" class="instrument-grid"></div></div><div class="card playable-panel"><div class="section-heading"><div><span class="label">PLAYABLE ROOM</span><h2 id="playableTitle">Synth keys</h2></div><span class="key-hint">QWERTY READY</span></div><div id="playableInstrument" class="playable-instrument"></div><div id="guitarControls" class="guitar-controls hidden"><span class="label">ELECTRIC GUITAR FX</span><div><button data-fx="drive">Drive</button><button data-fx="chorus">Chorus</button><button data-fx="delay">Delay</button><button data-fx="wah">Wah</button></div></div><p class="play-hint">Tap the keys or use <b>A S D F G H J K</b> on your keyboard</p></div></div></section>
+
+      <section class="view" id="gamesView"><div class="page-heading"><p class="eyebrow">PLAY &amp; LEARN</p><h1>Music games for <span>curious ears.</span></h1><p class="subtitle">Train your listening by feeling the difference, not memorizing names.</p></div><div class="games-grid"><section class="card game-card featured-game"><div class="game-card-top"><span class="game-tag">01 · PITCH FEEL</span><span class="score" id="pitchScore">0 pts</span></div><h2>Bright or blue?</h2><p>Listen to the chord, then choose the feeling. Major or minor?</p><button class="sound-btn" id="playChord">▶ &nbsp; Hear the chord</button><div class="answer-row"><button data-answer="major">☀ Major</button><button data-answer="minor">☾ Minor</button></div><div class="game-feedback" id="pitchFeedback">Press hear, then trust your ears.</div></section><section class="card game-card"><div class="game-card-top"><span class="game-tag">02 · TRIAD BUILDER</span><span class="game-level">LEVEL 1</span></div><h2>Stack the mood</h2><p>Build a happy triad by choosing the notes that belong together.</p><div class="triad-notes" id="triadNotes"><button data-note="C">C</button><button data-note="E">E</button><button data-note="G">G</button><button data-note="A">A</button></div><button class="sound-btn dark" id="playTriad">▶ Play my triad</button><div class="game-feedback" id="triadFeedback">Pick three notes.</div></section><section class="card game-card"><div class="game-card-top"><span class="game-tag">03 · INTERVAL WALK</span><span class="game-level">RISING</span></div><h2>How far apart?</h2><p>Hear two notes. Is the second one a little step or a big leap?</p><button class="interval-play" id="playInterval"><span>♬</span><b>Play two notes</b><small>Listen to the distance</small></button><div class="answer-row interval-answers"><button data-interval="step">Small step</button><button data-interval="leap">Big leap</button></div><div class="game-feedback" id="intervalFeedback">No labels to memorize—just listen.</div></section></div></section>
+    </main>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
