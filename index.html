@@ -35,7 +35,7 @@
           <section class="card mixer-card">
             <div class="section-heading"><div><span class="label">LIVE MIXER</span><h2>Midnight Bloom</h2></div><div class="tempo"><button id="tempoDown">−</button><strong id="tempoValue">108</strong><small>BPM</small><button id="tempoUp">＋</button></div></div>
             <div class="track-list" id="trackList"></div>
-            <button class="add-track" id="addTrackBtn">＋ Add a track</button>
+            <button type="button" class="add-track" id="addTrackBtn" onclick="window.showTrackPicker && window.showTrackPicker()">＋ Add a track</button>
           </section>
           <section class="card loop-card">
             <div class="section-heading"><div><span class="label">LOOP MAKER</span><h2>Build your groove</h2></div><div class="loop-tools"><button id="clearLoop">Clear</button><button class="small-play" id="playLoop">▶</button></div></div>
@@ -44,7 +44,7 @@
             <div class="loop-foot"><span><b class="live-dot"></b> 4 bars · Tap a square to add a hit</span><button class="text-btn" id="randomizeBtn">✦ Surprise me</button></div>
           </section>
         </div>
-        <section class="card voice-banner"><div class="voice-art"><span>♬</span><span>♩</span><span>♪</span></div><div><span class="label">VOCAL BOOTH</span><h2>Add your voice to the jam</h2><p>Record a hook, harmony, or tiny “yeah!” and layer it into your project.</p></div><button class="outline-btn" id="recordBtn"><span>●</span> Record voice</button><div class="recording-status" id="recordingStatus"></div></section>
+        <section class="card voice-banner"><div class="voice-art"><span>♬</span><span>♩</span><span>♪</span></div><div><span class="label">VOCAL BOOTH</span><h2>Add your voice to the jam</h2><p>Record a hook, harmony, or tiny “yeah!” and layer it into your project.</p></div><button class="outline-btn" id="recordBtn"><span>●</span> Record voice</button><div class="recording-status" id="recordingStatus"></div><div class="recording-list" id="recordingList" aria-live="polite"></div></section>
         <div class="bottom-grid"><section class="card mini-card"><div class="section-heading"><div><span class="label">PICK YOUR COLOR</span><h2>Current sound</h2></div><span id="instrumentIcon" class="big-instrument-icon">♩</span></div><div class="current-instrument" id="currentInstrument">Synth keys</div><p>Swap your voice instantly in the instrument room.</p><button class="text-btn" data-view-target="instruments">Open instrument room →</button></section><section class="card mini-card game-tease"><div><span class="label">5 MINUTES TO PLAY</span><h2>Ear gym</h2><p>Can you hear the difference between a major and minor triad?</p><button class="text-btn" data-view-target="games">Try a game →</button></div><div class="game-orb">♩</div></section></div>
       </section>
 
